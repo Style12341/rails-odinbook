@@ -16,7 +16,7 @@
             <li class="home-button"><%= button_to "Home", root_path , method: :get %></li>
             <% if user_signed_in? %>
               <div class="right">
-                <li><%= button_to "Profile", user_path(current_user) , method: :get%></li>
+                <li><%= button_to "Profile", "/" , method: :get%></li>
                 <li><%= button_to "Sign Out", destroy_user_session_path , method: :delete%></li>
               </div>
             <% else %>
