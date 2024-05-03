@@ -13,3 +13,128 @@
  *= require_tree .
  *= require_self
  */
+ li{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+}
+input[type="text"], input[type="password"], input[type="email"]{
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  border: 0px;
+  padding: 5px;
+  font-weight: bold;
+}
+input[type="submit"]{
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  border: 0px;
+  padding: 5px;
+  background-color: #03DAC6;
+  font-weight: bold;
+}
+input[type="checkbox"]{
+  height: 10px;
+}
+a{
+  display: inline-block;
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  border: 0px;
+  padding: 5px;
+  background-color: #03dac581;
+  font-weight: 550;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+
+}
+body{
+  background-color: #121212;
+}
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+button{
+cursor: pointer;
+width: 100px;
+height: 30px;
+border: 0px;
+border-radius: 10px;
+}
+.home-button button{
+background-color: #03DAC6;
+color: black;
+font-weight: bold;
+}
+.button{
+  background-color: #C38FFF;
+  color: black;
+  font-weight: bold;
+}
+.right button{
+background-color: #C38FFF;
+color: black;
+font-weight: bold;
+
+}
+body, .grid-container{
+min-height: 100vh;
+}
+.grid{
+display:grid;
+}
+.grid-container{
+  display: grid;
+  grid-template-rows: 50px 1fr 50px;
+  grid-gap: 10px;
+}
+.grid-nav{
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-gap: 10px;
+
+}
+nav{
+display:grid;
+align-content: center;
+background-color: #1F1F1F;
+font-weight: bold;
+}
+.right{
+justify-self: end;
+display:grid;
+grid-template-columns: 1fr 1fr;
+grid-gap: 10px;
+}
+.home-button{
+justify-self: start;
+}
+footer{
+display:flex;
+justify-content: center;
+align-items: center;
+background-color: #1F1F1F;
+}
+.content{
+  display:grid;
+  align-content: center;
+  justify-content: center;
+  color: white;
+}
+.devise-new , .devise-login{
+  display:grid;
+  padding:25px;
+  background-color:#1F1F1F ;
+  border-radius: 25px;
+}
+.new_user{
+  display:grid;
+  gap:10px;
+}
