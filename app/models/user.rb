@@ -12,4 +12,8 @@ class User < ApplicationRecord
   has_many :pending_follows, -> { where(accepted: false) }, foreign_key: :followee_id, class_name: 'Follow'
   has_many :posts
   has_many :likes, dependent: :destroy
+
+  def feed
+    Post.where(user: followees).or(Post.where(user: self)).order(created_at: :desc)
+  end
 end
