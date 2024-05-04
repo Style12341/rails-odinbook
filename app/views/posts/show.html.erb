@@ -1,0 +1,5 @@
+  <div class="post">
+    <h2><%= @post.user.name %></h2>
+    <p><%= @post.content %></p>
+  </div>
+<%= button_to "Delete Post" , @post , method: :delete %>

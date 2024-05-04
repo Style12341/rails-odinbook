@@ -1,0 +1,8 @@
+ <%= form_with model: @post do |f|  %>
+  <div class="field">
+    <%= f.label :content %>
+    <br>
+    <%= f.text_area :content %>
+  </div>
+  <%= f.submit @post.persisted? ? "Edit" : "Post" %>
+<% end %>
