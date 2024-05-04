@@ -169,3 +169,16 @@ textarea{
   width: 600px;
   height: 400px;
 }
+#comment_content {
+  background-color: #1E1E1E;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 20px;
+  width: 100%;
+  height: max-content;
+}
+.actions-comment{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}

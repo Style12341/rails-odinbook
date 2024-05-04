@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "comment-form" do %>
+  <h4>Add your comment:</h4>
+  <%= form_with(model: [@post, @comment ]) do |form| %>
+    <div class="field">
+      <%= form.text_area :content %>
+    </div>
+    <div class="actions-comment">
+      <%= form.submit %>
+      <%= link_to 'Cancel', @post, data: { turbo_action: 'replace', turbo_frame: 'comment-form' } %>
+    </div>
+  <% end %>
+<% end %>

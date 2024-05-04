@@ -1,0 +1,15 @@
+<%= turbo_frame_tag "post-show" do %>
+  <div class="post">
+    <h3><%= @post.user.name %></h2>
+    <div class="post-content">
+      <p><%= @post.content %></p>
+    </div>
+  </div>
+  <div class="post-comments">
+    <%# Render add comment form  %>
+    <%= turbo_frame_tag "comment-form" do %>
+      <%= link_to 'Add a comment', new_post_comment_path(@post) %>
+    <% end %>
+    <%= render @post.comments %>
+  </div>
+<% end %>

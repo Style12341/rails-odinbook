@@ -1,9 +1,4 @@
-<%= turbo_frame_tag "post-show" do %>
-<div class="post">
-  <h3><%= @post.user.name %></h2>
-  <div class="post-content">
-    <p><%= @post.content %></p>
-  </div>
-</div>
+<%= render partial: 'post', locals: { post: @post } %>
+<% if current_user == @post.user %>
+  <%= button_to "Delete Post" , @post , method: :delete %>
 <% end %>
-<%= button_to "Delete Post" , @post , method: :delete %>
