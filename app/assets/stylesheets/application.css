@@ -141,3 +141,7 @@ color:#737373;
   display:grid;
   gap:10px;
 }
+.devise-shared{
+  padding-top: 10px;
+  display:grid;
+}
