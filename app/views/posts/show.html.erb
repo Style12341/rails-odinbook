@@ -1,7 +1,9 @@
+<%= turbo_frame_tag "post-show" do %>
 <div class="post">
-  <h2><%= @post.user.name %></h2>
+  <h3><%= @post.user.name %></h2>
   <div class="post-content">
     <p><%= @post.content %></p>
   </div>
 </div>
+<% end %>
 <%= button_to "Delete Post" , @post , method: :delete %>
