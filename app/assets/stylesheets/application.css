@@ -139,7 +139,7 @@ color:#737373;
 }
 .content{
   display:grid;
-  align-content: center;
+  align-content: start;
   justify-content: center;
   grid-template-columns: 1fr 2fr 1fr;
   color: white;

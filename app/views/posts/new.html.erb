@@ -1,3 +1,5 @@
-<h1>Create a Post</h1>
-<h2><%= current_user.name %></h2>
-<%= render 'form' %>
+<%= turbo_frame_tag "post-form" do %>
+  <h1>Create a Post</h1>
+  <h2><%= current_user.name %></h2>
+  <%= render 'form' %>
+<% end %>

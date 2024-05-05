@@ -1,0 +1,10 @@
+<%= turbo_stream.prepend "posts" do %>
+  <%= render partial: 'post', locals: { post: @post } %>
+<% end %>
+<turbo-stream action="replace" target="post-form">
+  <template>
+    <%= turbo_frame_tag "post-form" do %>
+      <%= link_to 'Add a post', new_post_path %>
+    <% end %>
+  </template>
+</turbo-stream>

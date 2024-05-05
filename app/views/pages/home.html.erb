@@ -1,2 +1,7 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= turbo_frame_tag "post-form" do %>
+  <%= link_to 'Add a post', new_post_path %>
+<% end %>
+<h2>Posts</h2>
+<div id="posts" style="width:680px">
+  <%= render @posts %>
+</div>
