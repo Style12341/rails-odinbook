@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
+  include Pagy::Backend
   def home
-    @posts = current_user.feed
+    @pagy, @posts = pagy(current_user.feed.includes(:user).includes(:likes).includes(:comments), items: 5)
+    render 'scrollable_content' if params[:page]
   end
 end

@@ -3,7 +3,6 @@
 <% end %>
 <h2>Posts</h2>
 <div id="posts" style="width:680px">
-  <% for post in @posts %>
-    <%= turbo_frame_tag "post_#{post.id}" ,class: "post-unit", src: post_path(post.id), loading: "lazy" %>
-  <% end %>
+  <%= render @posts %>
+  <%= render "pages/next_page" , name: "posts" %>
 </div>
