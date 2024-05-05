@@ -19,6 +19,10 @@
   padding: 0;
 
 }
+p{
+  overflow: auto;
+  word-wrap: break-word;
+}
 input[type="text"], input[type="password"], input[type="email"]{
   width: 100%;
   height: 30px;
@@ -41,7 +45,7 @@ input[type="checkbox"]{
 }
 a{
   display: inline-block;
-  width: 100%;
+  width: 20%;
   height: 30px;
   border-radius: 10px;
   border: 0px;
@@ -63,25 +67,33 @@ box-sizing: border-box;
 }
 button{
 cursor: pointer;
-width: 100px;
-height: 30px;
-border: 0px;
-border-radius: 10px;
 }
 .home-button button{
 background-color: #03DAC6;
 color: black;
 font-weight: bold;
+width: 100px;
+height: 30px;
+border: 0px;
+border-radius: 10px;
 }
 .button{
   background-color: #C38FFF;
   color: black;
   font-weight: bold;
+  width: 100px;
+height: 30px;
+border: 0px;
+border-radius: 10px;
 }
 .right button{
 background-color: #C38FFF;
 color: black;
 font-weight: bold;
+width: 100px;
+height: 30px;
+border: 0px;
+border-radius: 10px;
 
 }
 body, .grid-container{
@@ -157,7 +169,7 @@ textarea{
   border: 2px solid black;
   padding: 12px 20px;
   border-radius: 20px;
-  width: 600px;
+  width: 680px;
   height: 400px;
   resize:none;
 }
@@ -166,8 +178,9 @@ textarea{
   color: white;
   padding: 12px 20px;
   border-radius: 20px;
-  width: 600px;
-  height: 400px;
+  width: 680px;
+  margin:10px;
+  height: max-content;
 }
 #comment_content {
   background-color: #1E1E1E;
@@ -181,4 +194,33 @@ textarea{
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap:10px;
+}
+.comment-container{
+  display:grid;
+  gap:10px;
+  padding: 10px;
+  background-color: #1E1E1E;
+  border-radius: 20px;
+  grid-template-rows: 1rem 1fr;
+  width: 680px;
+}
+.del-button{
+  background-color: inherit;
+  color: white;
+  font-weight: bold;
+  border: 0px;
+  border-radius: 10px;
+
+}
+.comments_container{
+  display:grid;
+  gap:10px;
+  padding: 10px;
+  border-radius: 20px;
+}
+.bot{
+  display:grid;
+  grid-template-columns: 1fr 1rem;
+  padding: 10px;
+  border-radius: 20px;
 }

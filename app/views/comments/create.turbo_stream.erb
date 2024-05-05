@@ -1,0 +1,10 @@
+<%= turbo_stream.append "post_#{@post.id}_comments" do %>
+  <%= render partial: 'comments/comment', locals: { comment: @comment }%>
+<% end %>
+<turbo-stream action="replace" target="comment-form">
+  <template>
+    <%= turbo_frame_tag "comment-form" do %>
+      <%= link_to 'Add a comment', new_post_comment_path(@post) %>
+    <% end %>
+  </template>
+</turbo-stream>

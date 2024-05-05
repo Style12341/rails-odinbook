@@ -10,6 +10,8 @@
     <%= turbo_frame_tag "comment-form" do %>
       <%= link_to 'Add a comment', new_post_comment_path(@post) %>
     <% end %>
-    <%= render @post.comments %>
+    <div id= <%= "post_#{@post.id}_comments" %> class="comments_container">
+      <%= render @post.comments %>
+    </div>
   </div>
 <% end %>
