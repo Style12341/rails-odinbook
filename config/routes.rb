@@ -2,11 +2,9 @@ Rails.application.routes.draw do
   get 'pages/home'
   devise_for :users
   resources :posts do
-    resources :comments, only: %i[new create] do
-      resources :likes, only: %i[create destroy]
-    end
-    resources :likes, only: %i[create destroy]
+    resources :comments, only: %i[new create]
   end
+  resources :likes, only: %i[create destroy]
   resources :comments, only: %i[destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

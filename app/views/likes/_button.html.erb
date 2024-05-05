@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "like_button" do%>
+  <% if like.nil? %>
+    <%= button_to likes_path , method: :post, class: "like-button", params:{ like: {likeable_id: likeable.id,
+  likeable_type: likeable.class.to_s}} do%>
+      <span class="material-symbols-outlined">
+        favorite
+      </span>
+    <% end %>
+  <% else %>
+    <%= button_to like_path(like) , method: :delete, class: "like-button" do%>
+      <span class="material-symbols-outlined liked">
+        favorite
+      </span>
+    <% end %>
+  <% end %>
+<% end %>
