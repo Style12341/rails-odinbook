@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[new create]
   end
   resources :likes, only: %i[create destroy]
+  post 'toggle_like', to: 'likes#toggle'
   resources :comments, only: %i[destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

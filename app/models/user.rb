@@ -16,4 +16,8 @@ class User < ApplicationRecord
   def feed
     Post.where(user: followees).or(Post.where(user: self)).order(created_at: :desc)
   end
+
+  def likes?(likeable) # Determine if this user likes a post
+    Like.find_by(user: self, likeable: likeable)
+  end
 end
