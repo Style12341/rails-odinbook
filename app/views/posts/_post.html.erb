@@ -15,7 +15,7 @@
       <%=turbo_frame_tag "like_button" do %>
         <%= render partial: 'likes/button', locals: {likeable: post , like: current_user.likes.find_by(likeable: post) } %>
       <% end %>
-      <p><%= post.likes.count %></p>
+      <p><%= post.likes.size %></p>
     </div>
   </div>
   <div class="post-comments">
