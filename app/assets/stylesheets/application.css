@@ -224,3 +224,11 @@ textarea{
   padding: 10px;
   border-radius: 20px;
 }
+.post-heading{
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  align-items: start;
+}
+.post-heading .button_to button{
+  font-size: 0.5rem;
+}

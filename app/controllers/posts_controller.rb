@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to root_path
+    render turbo_stream: turbo_stream.remove(post)
   end
 
   def update

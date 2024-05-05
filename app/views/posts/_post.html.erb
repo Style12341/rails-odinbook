@@ -1,6 +1,15 @@
 <%= turbo_frame_tag "post-show" do %>
   <div class="post">
-    <h3><%= post.user.name %></h2>
+    <div class="post-heading">
+      <h3><%= post.user.name %></h2>
+      <% if current_user == post.user %>
+        <%= button_to @post , method: :delete, class: "del-button" do%>
+          <span class="material-symbols-outlined">
+            delete
+          </span>
+        <% end %>
+      <% end %>
+    </div>
     <div class="post-content">
       <p><%= post.content %></p>
     </div>

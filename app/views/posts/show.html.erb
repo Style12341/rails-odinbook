@@ -1,4 +1,3 @@
-<%= render partial: 'post', locals: { post: @post } %>
-<% if current_user == @post.user %>
-  <%= button_to "Delete Post" , @post , method: :delete %>
+<%= turbo_frame_tag "post_#{@post.id}" do%>
+  <%= render partial: 'post', locals: { post: @post } %>
 <% end %>
