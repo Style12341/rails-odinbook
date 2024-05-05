@@ -1,8 +1,9 @@
  <%= form_with model: @post do |f|  %>
   <div class="field">
-    <%= f.label :content %>
-    <br>
     <%= f.text_area :content %>
   </div>
-  <%= f.submit @post.persisted? ? "Edit" : "Post" %>
+  <div class="actions-comment">
+    <%= f.submit @post.persisted? ? "Edit" : "Post" %>
+    <%= link_to 'Cancel', '#', data: { turbo_action: 'replace', turbo_frame: 'post-form' } %>
+  </div>
 <% end %>

@@ -1,4 +1,9 @@
 <%= turbo_frame_tag "post-form" do %>
+  <% if flash[:post_error] %>
+    <div class="error">
+      <%= flash[:post_error] %>
+    </div>
+  <% end %>
   <h1>Create a Post</h1>
   <h2><%= current_user.name %></h2>
   <%= render 'form' %>

@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   get 'pages/home'
   devise_for :users
   resources :posts do
-    resources :comments, only: %i[new create]
+    resources :comments, only: %i[new create] do
+      resources :likes, only: %i[create destroy]
+    end
+    resources :likes, only: %i[create destroy]
   end
-  resources :comments , only: %i[destroy]
+  resources :comments, only: %i[destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

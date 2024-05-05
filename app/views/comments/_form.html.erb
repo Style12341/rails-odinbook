@@ -5,7 +5,7 @@
       <%= form.text_area :content %>
     </div>
     <div class="actions-comment">
-      <%= form.submit %>
+      <%= form.submit "Comment"%>
       <%= link_to 'Cancel', '#', data: { turbo_action: 'replace', turbo_frame: 'comment-form' } %>
     </div>
   <% end %>

@@ -16,13 +16,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.build(post_params)
+    @post = current_user.posts.build(post_params)
     respond_to do |format|
-      if post.save
-        format.html { redirect_to post }
+      if @post.save
+        format.html { redirect_to @post }
         format.turbo_stream
       else
-        render :new
+        flash[:post_error] = " Post can't be blank."
+        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end

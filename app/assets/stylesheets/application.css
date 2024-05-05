@@ -45,7 +45,7 @@ input[type="checkbox"]{
 }
 a{
   display: inline-block;
-  width: 20%;
+  width: auto;
   height: 30px;
   border-radius: 10px;
   border: 0px;
@@ -176,9 +176,7 @@ textarea{
 .post-content{
   background-color: #1E1E1E;
   color: white;
-  padding: 12px 20px;
   border-radius: 20px;
-  width: 680px;
   margin:10px;
   height: max-content;
 }
@@ -192,7 +190,8 @@ textarea{
 }
 .actions-comment{
   display:grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 100px);
+  justify-content: end;
   gap:10px;
 }
 .comment-container{
@@ -231,4 +230,10 @@ textarea{
 }
 .post-heading .button_to button{
   font-size: 0.5rem;
+}
+.post{
+  padding:15px;
+  background-color: #1e1e1e;
+  border-radius: 20px;
+  margin-bottom: 10px;
 }
