@@ -36,12 +36,7 @@ class LikesController < ApplicationController
     else
       @like = current_user.likes.create(like_params)
     end
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace('like_button', partial: 'likes/button',
-                                                                 locals: { like: @like, likeable: @like.likeable })
-      end
-    end
+    head :ok, content_type: "text/html"
   end
 
   private
