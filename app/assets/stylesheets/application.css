@@ -197,7 +197,7 @@ textarea{
   display:grid;
   gap:10px;
   padding: 10px;
-  background-color: #1E1E1E;
+  background-color: #4E4F50;
   border-radius: 20px;
   grid-template-rows: 1rem 1fr;
   width: 680px;
@@ -209,6 +209,13 @@ textarea{
   border: 0px;
   border-radius: 10px;
 
+}
+.post-container{
+  background-color: #1E1E1E;
+  border-radius: 10px;
+}
+.comment-section-container{
+  padding-left: 10px;;
 }
 .comments_container{
   display:grid;
@@ -223,9 +230,8 @@ textarea{
   border-radius: 20px;
 }
 .post-heading{
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  align-items: start;
+  display: flex;
+  justify-content: space-between;
 }
 .post-heading .button_to button{
   font-size: 0.5rem;
@@ -234,10 +240,9 @@ textarea{
   padding:15px;
   background-color: #1e1e1e;
   border-radius: 20px;
-  margin-bottom: 10px;
 }
 .material-button{
-  background-color: #1E1E1E;
+  background-color: inherit;
   border: 0px;
   color:white;
 }

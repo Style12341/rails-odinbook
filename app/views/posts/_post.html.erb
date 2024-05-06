@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "post-show-#{post.id}", data: {controller: "comment-handler"} do %>
+<%= turbo_frame_tag "post-show-#{post.id}", data: {controller: "comment-handler"} , class: "post-container" do %>
   <div class="post">
     <div class="post-heading">
       <h3><%= post.user.name %></h2>
@@ -29,7 +29,5 @@
       </div>
     </div>
   </div>
-  <div class="post-comments">
-    <%= turbo_frame_tag "post_#{post.id}_comment_section"%>
-  </div>
+  <%= turbo_frame_tag "post_#{post.id}_comment_section"%>
 <% end %>

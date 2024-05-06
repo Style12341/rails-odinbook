@@ -1,8 +1,6 @@
-<%= turbo_frame_tag "post_#{@post.id}_comment_section" do%>
-  <%= turbo_frame_tag "comment_form_#{@post.id}",data:{comment_handler_target:"frame"} do %>
+<%= turbo_frame_tag "post_#{@post.id}_comment_section"  do%>
+  <%= turbo_frame_tag "comment_form_#{@post.id}",data:{comment_handler_target:"frame"}, class: "comment-section-container" do %>
     <%= link_to 'Add a comment', new_post_comment_path(@post)%>
   <% end %>
-  <div class="comments_container">
-    <%= turbo_frame_tag "post_#{@post.id}_comments" ,loading: :lazy, src: post_comments_path(@post)  %>
-  </div>
+  <%= turbo_frame_tag "post_#{@post.id}_comments" ,loading: :lazy, src: post_comments_path(@post), class: "comments_container" %>
 <% end %>
