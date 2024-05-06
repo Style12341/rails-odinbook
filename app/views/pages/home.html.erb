@@ -2,7 +2,7 @@
   <%= link_to 'Add a post', new_post_path %>
 <% end %>
 <h2>Posts</h2>
-<div id="posts" style="width:680px">
+<div id="posts" class="posts" style="width:680px">
   <%= render @posts %>
   <%= render "pages/next_page" , name: "posts" %>
 </div>

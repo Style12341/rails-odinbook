@@ -1,4 +1,6 @@
 <%= turbo_frame_tag "posts-page-#{@pagy.page}" do%>
-  <%= render @posts %>
-  <%= render "pages/next_page" , name: "posts" %>
+  <div class="posts">
+    <%= render @posts %>
+    <%= render "pages/next_page" , name: "posts" %>
+  </div>
 <% end %>
