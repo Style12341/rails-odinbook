@@ -1,9 +1,9 @@
-<%= turbo_frame_tag "post-show", data: {controller: "comment-handler"} do %>
+<%= turbo_frame_tag "post-show-#{post.id}", data: {controller: "comment-handler"} do %>
   <div class="post">
     <div class="post-heading">
       <h3><%= post.user.name %></h2>
       <% if current_user == post.user %>
-        <%= button_to @post , method: :delete, class: "del-button" do%>
+        <%= button_to post_path(post) , method: :delete, class: "del-button" do%>
           <span class="material-symbols-outlined">
             delete
           </span>

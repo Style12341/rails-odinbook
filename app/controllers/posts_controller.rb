@@ -31,7 +31,8 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    render turbo_stream: turbo_stream.remove(post)
+    # Remove turbo tag with id post_show_#{post.id}
+    render turbo_stream: turbo_stream.remove("post-show-#{post.id}")
   end
 
   def update
