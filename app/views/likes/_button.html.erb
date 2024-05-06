@@ -1,6 +1,6 @@
-<%= button_to toggle_like_path , method: :post, class: "like-button", data: {action: "alter-button-counter#toggle"},params:{ like: {likeable_id: likeable.id,
+<%= button_to toggle_like_path , method: :post, class: "material-button", data: {action: "alter-button-counter#toggle"},params:{ like: {likeable_id: likeable.id,
   likeable_type: likeable.class.to_s}} do%>
-  <span class="material-symbols-outlined <%= current_user.likes?(likeable) ? "on" : "" %>" data-alter-button-counter-target="state">
+  <span class="material-symbols-outlined like <%= current_user.likes?(likeable) ? "on" : "" %>" data-alter-button-counter-target="state">
     favorite
   </span>
 <% end %>

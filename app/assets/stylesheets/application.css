@@ -236,7 +236,12 @@ textarea{
   border-radius: 20px;
   margin-bottom: 10px;
 }
-.like-button{
+.material-button{
+  background-color: #1E1E1E;
+  border: 0px;
+  color:white;
+}
+a.material-link{
   background-color: #1E1E1E;
   border: 0px;
   color:white;
@@ -258,4 +263,15 @@ textarea{
 .posts{
   display:grid;
   gap:50px;
+}
+.like-container{
+  display:flex;
+  gap:5px;
+  justify-content: end;
+}
+span.like , span.comment{
+  font-size: 1rem;
+}
+.hidden{
+  display: none;
 }

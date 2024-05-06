@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "post-show" do %>
+<%= turbo_frame_tag "post-show", data: {controller: "comment-handler"} do %>
   <div class="post">
     <div class="post-heading">
       <h3><%= post.user.name %></h2>
@@ -13,14 +13,23 @@
     <div class="post-content">
       <p><%= post.content %></p>
       <div class="like-container" data-controller="alter-button-counter">
+        <%= button_to  root_path,method: :get, data: {turbo_frame: "post_#{post.id}_comment_section", comment_handler_target:"close", action:"comment-handler#toggle"}, class: "material-button hidden" do%>
+          <span class="material-symbols-outlined comment">
+            comment
+          </span>
+        <% end %>
+        <%= button_to  post_comment_section_path(post),method: :get, data: {turbo_frame: "post_#{post.id}_comment_section", comment_handler_target:"open", action:"comment-handler#toggle"}, class: "material-button" do%>
+          <span class="material-symbols-outlined comment">
+            comment
+          </span>
+        <% end %>
+        <p data-comment-handler-target="counter"><%= post.comments.size %></p>
         <%= render partial: 'likes/button', locals: {likeable: post , like: current_user.likes.find_by(likeable: post) } %>
         <p data-alter-button-counter-target="counter"><%= post.likes.size %></p>
       </div>
     </div>
   </div>
   <div class="post-comments">
-    <%= turbo_frame_tag "post_#{post.id}_comment_section" do%>
-      <%= button_to "See comments", post_comment_section_path(post), method: :get%>
-    <% end %>
+    <%= turbo_frame_tag "post_#{post.id}_comment_section"%>
   </div>
 <% end %>
