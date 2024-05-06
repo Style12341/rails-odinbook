@@ -2,14 +2,18 @@
   <div class="top">
     <h4><%= comment.user.name %></h4>
   </div>
-  <div class="bot">
+  <div class="bot" >
     <p><%= comment.content %></p>
-    <% if current_user == comment.user %>
-      <%= button_to comment , method: :delete, class: "del-button", data: {action: "comment-handler#removeComment"} do%>
-        <span class="material-symbols-outlined">
-          delete
-        </span>
+    <div class="like-container" data-controller="alter-button-counter" style="grid-column-start:1;>
+      <%= render partial: 'likes/button', locals: {likeable: comment , like: current_user.likes.find_by(likeable: comment) } %>
+      <p data-alter-button-counter-target="counter"><%= comment.likes.size %></p>
+      <% if current_user == comment.user %>
+        <%= button_to comment , method: :delete, class: "del-button", data: {action: "comment-handler#removeComment"} do%>
+          <span class="material-symbols-outlined">
+            delete
+          </span>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
