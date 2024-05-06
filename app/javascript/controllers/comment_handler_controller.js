@@ -38,4 +38,7 @@ export default class extends Controller {
       console.error("Error:", error);
     }
   }
+  removeComment(  ) {
+    this.counterTarget.innerHTML = parseInt(this.counterTarget.innerText) - 1;
+  }
 }

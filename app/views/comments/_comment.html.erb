@@ -5,7 +5,7 @@
   <div class="bot">
     <p><%= comment.content %></p>
     <% if current_user == comment.user %>
-      <%= button_to comment , method: :delete, class: "del-button" do%>
+      <%= button_to comment , method: :delete, class: "del-button", data: {action: "comment-handler#removeComment"} do%>
         <span class="material-symbols-outlined">
           delete
         </span>
