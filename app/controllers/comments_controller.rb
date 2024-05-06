@@ -30,8 +30,15 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to post_path(@comment.post)
+    respond_to do |format|
+      if @comment.destroy
+        format.turbo_stream { render turbo_stream: turbo_stream.remove(@comment) }
+        format.html { redirect_to post_path(@comment.post) }
+      else
+        format.turbo_stream
+        format.html { redirect_to root}
+      end
+    end
   end
 
   private
