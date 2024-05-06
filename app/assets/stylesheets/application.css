@@ -255,3 +255,7 @@ textarea{
   'GRAD' 0,
   'opsz' 20;
 }
+.posts{
+  display:grid;
+  gap:50px;
+}

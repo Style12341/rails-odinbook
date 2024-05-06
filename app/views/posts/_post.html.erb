@@ -19,12 +19,11 @@
     </div>
   </div>
   <div class="post-comments">
-    <%# Render add comment form  %>
     <%= turbo_frame_tag "comment_form_#{post.id}" do %>
       <%= link_to 'Add a comment', new_post_comment_path(post) %>
     <% end %>
     <div id= <%= "post_#{post.id}_comments" %> class="comments_container">
-      <%= render post.comments %>
+      <%= turbo_frame_tag "post_#{post.id}_comments" ,loading: :lazy, src: post_comments_path(post)  %>
     </div>
   </div>
 <% end %>

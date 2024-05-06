@@ -1,0 +1,3 @@
+<% if @pagy_comments.next %>
+  <%= link_to "Load More",pagy_url_for(@pagy_comments,@pagy_comments.next), class: "btn btn-primary" %>
+<% end %>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'pages/home'
   devise_for :users
   resources :posts do
-    resources :comments, only: %i[new create]
+    resources :comments, only: %i[index new create]
   end
   resources :likes, only: %i[create destroy]
   post 'toggle_like', to: 'likes#toggle'

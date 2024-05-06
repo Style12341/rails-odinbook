@@ -1,4 +1,11 @@
 class CommentsController < ApplicationController
+  include Pagy::Backend
+  def index
+    @post = Post.find(params[:post_id])
+    @pagy_comments, @comments = pagy(@post.comments.includes(:user), items: 5, page_param: :page_comments)
+    puts "params[:page_comments]: #{params[:page_comments]}"
+    render 'next_page' if params[:page_comments]
+  end
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params)
