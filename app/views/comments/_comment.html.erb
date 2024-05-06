@@ -4,7 +4,7 @@
   </div>
   <div class="bot" >
     <p><%= comment.content %></p>
-    <div class="like-container" data-controller="alter-button-counter" style="grid-column-start:1;>
+    <div class="like-container" data-controller="alter-button-counter">
       <%= render partial: 'likes/button', locals: {likeable: comment , like: current_user.likes.find_by(likeable: comment) } %>
       <p data-alter-button-counter-target="counter"><%= comment.likes.size %></p>
       <% if current_user == comment.user %>

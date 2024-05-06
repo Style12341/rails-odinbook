@@ -6,7 +6,7 @@
     </div>
     <div class="actions-comment">
       <%= form.submit "Comment", data:{action:"comment-handler#addComment"}%>
-      <%= link_to 'Cancel', post_comment_section_path(@post), data: { turbo_action: 'replace', turbo_frame: "comment_form_#{@post.id}" } %>
+      <%= link_to 'Cancel', post_comment_section_path(@post),remote: true, data: { turbo_action: 'replace', turbo_frame: "comment_form_#{@post.id}" } %>
     </div>
   <% end %>
 <% end %>

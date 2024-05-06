@@ -13,7 +13,7 @@
     <div class="post-content">
       <p><%= post.content %></p>
       <div class="like-container" data-controller="alter-button-counter">
-        <%= button_to  root_path,method: :get, data: {turbo_frame: "post_#{post.id}_comment_section", comment_handler_target:"close", action:"comment-handler#toggle"}, class: "material-button hidden" do%>
+        <%= button_to  root_path,method: :get, data: {comment_handler_target:"close", action:"comment-handler#toggle comment-handler#hideCommentSection"}, class: "material-button hidden" do%>
           <span class="material-symbols-outlined comment">
             comment
           </span>
@@ -29,5 +29,5 @@
       </div>
     </div>
   </div>
-  <%= turbo_frame_tag "post_#{post.id}_comment_section"%>
+  <%= turbo_frame_tag "post_#{post.id}_comment_section", data: {comment_handler_target: "commentSection"}%>
 <% end %>

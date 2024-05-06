@@ -2,11 +2,16 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="comment-handler"
 export default class extends Controller {
-  static targets = ["open", "close", "frame", "counter"];
+  static targets = ["open", "close", "frame", "counter", "commentSection"];
   connect() {}
   toggle() {
     this.openTarget.classList.toggle("hidden");
     this.closeTarget.classList.toggle("hidden");
+  }
+
+  hideCommentSection(event) {
+    event.preventDefault();
+    this.commentSectionTarget.innerHTML = "";
   }
   async addComment(event) {
     const id = this.frameTarget.id;
@@ -38,7 +43,7 @@ export default class extends Controller {
       console.error("Error:", error);
     }
   }
-  removeComment(  ) {
+  removeComment() {
     this.counterTarget.innerHTML = parseInt(this.counterTarget.innerText) - 1;
   }
 }
