@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "post_#{@post.id}_comment_section" do%>
+  <%= turbo_frame_tag "comment_form_#{@post.id}" do %>
+    <%= link_to 'Add a comment', new_post_comment_path(@post) %>
+  <% end %>
+  <div id= <%= "post_#{@post.id}_comments" %> class="comments_container">
+    <%= turbo_frame_tag "post_#{@post.id}_comments" ,loading: :lazy, src: post_comments_path(@post)  %>
+  </div>
+<% end %>

@@ -43,6 +43,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def comment_section
+    @post = Post.find(params[:post_id])
+  end
+
   private
 
   def post_params
