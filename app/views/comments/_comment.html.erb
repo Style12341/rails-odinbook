@@ -1,6 +1,6 @@
 <div id = <%= "comment_#{comment.id}" %> class= "comment-container">
   <div class="top">
-    <a href= <%="#{user_path(comment.user)}"%> ><%= comment.user.name %></a>
+    <a href= <%="#{user_path(comment.user)}"%> data-turbo-frame="_top" ><%= comment.user.name %></a>
   </div>
   <div class="bot" >
     <p><%= comment.content %></p>

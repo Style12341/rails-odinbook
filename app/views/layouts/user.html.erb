@@ -32,7 +32,21 @@
         <div class="content">
           <div></div>
           <div class="main"><%= yield %></div>
-          <div id="right_side_bar"></div>
+          <div id="right_side_bar">
+            <div class="right_card follows">
+              <%= turbo_frame_tag "follows" , loading: "lazy" , src: user_follows_path(@user)%>
+            </div>
+            <% if false %>
+              <div class="right_card followers">
+                <h2>Followers</h2>
+                <%= turbo_frame_tag "followers" , loading: "lazy" , src: user_followers_path(@user)%>
+              </div>
+              <div class="right_card pending_requests">
+                <h2>Pending Requests</h2>
+                <%= turbo_frame_tag "pending_requests" , loading: "lazy" , src: user_follows_requests_(@user)%>
+              </div>
+            <% end %>
+          </div>
         </div>
         <footer>
           <p>Created by Bernard Maximiliano</p>
