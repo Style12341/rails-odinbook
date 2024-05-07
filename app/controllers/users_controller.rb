@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
+  include Pagy::Backend
   def show
     @user = User.find(params[:id])
-    @pagy, @posts = @user.posts
-    @pagy, @posts = pagy(@user.posts, items: 5)
-    render 'scrollable_content' if params[:page]
+    @pagy, @posts = pagy(@user.posts.order(created_at: :desc), items: 5)
+    render 'posts/scrollable_content' if params[:page]
   end
 end
