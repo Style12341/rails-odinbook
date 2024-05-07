@@ -1,0 +1,22 @@
+<%# follow contains the user that corresponds to this follow  %>
+<div class="follow_container">
+  <div class="follow">
+    <div class="follow_image">
+      <%# image_tag follow.image_url, alt: follow.name %>
+    </div>
+    <div class="follow_name">
+      <%= follow.name %>
+    </div>
+    <div class="follow_buttons">
+      <% if Follow.follow(current_user,follow).accepted %>
+        <% if current_user.following?(follow) %>
+          <%= button_to "Unfollow", follow_path(Follow.follow(current_user,follow)), method: :delete %>
+        <% else %>
+          <%= button_to "Follow", follows_path(follow), method: :post %>
+        <% end %>
+      <% else %>
+        <%= button_to "Cancel Request", follow_path(Follow.follow(current_user,follow)), method: :delete %>
+      <% end %>
+    </div>
+  </div>
+</div>

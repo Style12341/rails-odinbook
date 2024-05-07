@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  # set user layout
+  layout 'user'
   include Pagy::Backend
   def show
     @user = User.find(params[:id])
