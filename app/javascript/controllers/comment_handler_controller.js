@@ -17,7 +17,6 @@ export default class extends Controller {
     const id = this.frameTarget.id;
     event.preventDefault();
     const form = event.target.form;
-    console.log(event.target.form);
     // Perform form submission via AJAX or Turbo
     // Assuming you're using Turbo, you might have something like:
     try {

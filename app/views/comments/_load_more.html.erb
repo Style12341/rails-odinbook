@@ -1,5 +1,9 @@
-  <% if @pagy_comments.next %>
-  <%= turbo_frame_tag "post_#{@post.id}_comments_#{@pagy_comments.next}", class: "comments_container" do%>
-    <%= link_to "Load More",pagy_url_for(@pagy_comments,@pagy_comments.next), class: "btn btn-primary" %>
-  <% end %>
+<% if @pagy_comments.next %>
+  <%= button_to "Load More",pagy_url_for(@pagy_comments,@pagy_comments.next),
+  method: :get,
+  remote: true,
+  data: {action: "turbo-stream-get#fetch"},
+  form: {data: {controller:"turbo-stream-get" , turbo_stream_get_target:"frame"},
+  id: "#{@post.id}_comments"},
+  class: "btn btn-primary" %>
 <% end %>

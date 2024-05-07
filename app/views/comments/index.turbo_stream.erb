@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "#{@post.id}_comments" do %>
+  <%= render  @comments %>
+  <%= render 'comments/load_more' %>
+<% end %>

@@ -3,7 +3,7 @@
 <% end %>
 <turbo-stream action="replace" target=<%= "comment_form_#{@post.id}" %> >
   <template>
-    <%= turbo_frame_tag "comment_form_#{@post.id}" do %>
+    <%= turbo_frame_tag "comment_form_#{@post.id}",data:{comment_handler_target:"frame"}, class: "comment-section-container" do %>
       <%= link_to 'Add a comment', new_post_comment_path(@post) %>
     <% end %>
   </template>
