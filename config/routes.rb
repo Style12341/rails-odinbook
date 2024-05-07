@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'pages/home'
   devise_for :users
+  resources :users, only: %i[show edit update]
   resources :posts do
     get 'comment_section', to: 'posts#comment_section', as: 'comment_section'
     resources :comments, only: %i[index new create]

@@ -200,7 +200,6 @@ textarea{
   background-color: #4E4F50;
   border-radius: 20px;
   grid-template-rows: 1rem 1fr;
-  width: 680px;
 }
 .del-button{
   background-color: inherit;
@@ -217,7 +216,7 @@ textarea{
 .comment-section-container{
   padding-left: 10px;;
 }
-.comments_container{
+.comments-container{
   display:grid;
   gap:10px;
   padding: 10px;

@@ -2,5 +2,6 @@
   <div class="comments-container">
     <%= render @comments %>
     <%= render 'comments/load_more' %>
+    <%= button_to "Close",root_path ,data: {action:"comment-handler#toggle comment-handler#hideCommentSection"}%>
   </div>
 <% end %>
