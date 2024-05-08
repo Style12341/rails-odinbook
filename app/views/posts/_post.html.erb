@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "post-show-#{post.id}", data: {controller: "comment-handler"} , class: "post-container" do %>
   <div class="post">
     <div class="post-heading">
-      <h3><%= post.user.name %></h2>
+      <a href=<%= user_path(post.user) %> class="post-user" data-turbo-frame ="_top" > <%= post.user.name %></a>
       <% if current_user == post.user %>
         <%= button_to post_path(post) , method: :delete, class: "del-button" do%>
           <span class="material-symbols-outlined">

@@ -12,15 +12,17 @@
         <% if current_user.following?(follow) %>
           <%= button_to (follower ? "Delete follow" : "Unfollow"), follow_path(follow), method: :delete, class: "btn btn-danger" %>
         <% else %>
-          <% if pending_request %>
-            <%= button_to "Cancel Request",
+          <turbo-frame id="<%= follow.id.to_s + "_request_button"%>">
+            <% if pending_request %>
+              <%= button_to "Cancel Request",
                 cancel_follow_request_user_path(follow),
                 method: :delete, class: "btn btn-primary" %>
-          <% else %>
-            <%= button_to "Request follow",
+            <% else %>
+              <%= button_to "Request follow",
                 follow_requests_path(follow),
                 method: :post, class: "btn btn-primary" %>
-          <% end %>
+            <% end %>
+          </turbo-frame>
         <% end %>
       <% end %>
     </div>

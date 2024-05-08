@@ -1,10 +1,14 @@
 class FollowRequestsController < ApplicationController
   def create
     @user = User.find(params[:id])
-    if current_user.send_follow(@user)
-      redirect_to followers_user_path(current_user)
-    else
-      redirect_to followers_user_path(current_user), alert: 'Something went wrong'
+    respond_to do |format|
+      if current_user.send_follow(@user)
+        format.html { redirect_to user_path(current_user) }
+        format.turbo_stream { render 'follow_requests/request_button', locals: { user: @user } }
+      else
+        format.html { redirect_to user_path(current_user), alert: 'Something went wrong' }
+        format.turbo_stream
+      end
     end
   end
 
@@ -32,10 +36,14 @@ class FollowRequestsController < ApplicationController
 
   def cancel
     @user = User.find(params[:id])
-    if current_user.cancel_follow_request(@user)
-      redirect_to followers_user_path(current_user)
-    else
-      redirect_to followers_user_path(current_user), alert: 'Something went wrong'
+    respond_to do |format|
+      if current_user.cancel_follow_request(@user)
+        format.html { redirect_to user_path(current_user) }
+        format.turbo_stream { render 'follow_requests/request_button', locals: { user: @user } }
+      else
+        format.html { redirect_to user_path(current_user), alert: 'Something went wrong' }
+        format.turbo_stream
+      end
     end
   end
 end

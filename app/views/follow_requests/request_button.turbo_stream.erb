@@ -1,0 +1,7 @@
+<%= turbo_stream.update (user.id.to_s + "_request_button") do%>
+  <% if current_user.sent_request?(user) %>
+    <%=button_to "Cancel request", cancel_follow_request_user_path(user), method: :delete, class: "btn btn-primary"%>
+  <% else %>
+    <%= button_to "Request follow", follow_requests_path(user), method: :post, class: "btn btn-primary"%>
+  <% end %>
+<% end %>
