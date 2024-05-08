@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_06_044439) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_221132) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,11 +25,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_044439) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "follow_requests", force: :cascade do |t|
+    t.bigint "sender_id", null: false
+    t.bigint "receiver_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_follow_requests_on_receiver_id"
+    t.index ["sender_id"], name: "index_follow_requests_on_sender_id"
+  end
+
   create_table "follows", force: :cascade do |t|
     t.bigint "followee_id", null: false
     t.bigint "follower_id", null: false
-    t.boolean "blocked", default: false
-    t.boolean "accepted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followee_id"], name: "index_follows_on_followee_id"
@@ -71,6 +78,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_044439) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "follow_requests", "users", column: "receiver_id"
+  add_foreign_key "follow_requests", "users", column: "sender_id"
   add_foreign_key "follows", "users", column: "followee_id"
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "likes", "users"

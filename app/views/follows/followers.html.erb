@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "followers" do%>
+  <div class="followers">
+    <h2>Followers</h2>
+    <ul class="follows-container">
+      <% @followers.each do |follower| %>
+        <li class="follow-container" >
+          <%= render partial: "follow" ,locals:{follow: follower , follower: true , pending_request: current_user.sent_request?(follower)} %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

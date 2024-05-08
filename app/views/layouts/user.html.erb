@@ -18,7 +18,7 @@
             <li class="home-button"><%= button_to "Home", root_path , method: :get %></li>
             <% if user_signed_in? %>
               <div class="right">
-                <li><%= button_to "Profile", "/" , method: :get%></li>
+                <li><%= button_to "Profile", user_path(current_user) , method: :get%></li>
                 <li><%= button_to "Sign Out", destroy_user_session_path , method: :delete%></li>
               </div>
             <% else %>
@@ -26,6 +26,7 @@
                 <li><%= button_to "Sign in", new_user_session_path , method: :get %></li>
                 <li><%= button_to "Sign up", new_user_registration_path , method: :get%></li>
               </div>
+              @user
             <% end %>
           </ul>
         </nav>
@@ -33,17 +34,16 @@
           <div></div>
           <div class="main"><%= yield %></div>
           <div id="right_side_bar">
-            <div class="right_card follows">
-              <%= turbo_frame_tag "follows" , loading: "lazy" , src: user_follows_path(@user)%>
+            <div class="right_card followees">
+              <%= turbo_frame_tag "followees" , loading: "lazy" , src: followees_user_path(@user)%>
+            </div>
+            <div class="right_card followers">
+              <%= turbo_frame_tag "followers" , loading: "lazy" , src: followers_user_path(@user)%>
             </div>
             <% if false %>
-              <div class="right_card followers">
-                <h2>Followers</h2>
-                <%= turbo_frame_tag "followers" , loading: "lazy" , src: user_followers_path(@user)%>
-              </div>
               <div class="right_card pending_requests">
                 <h2>Pending Requests</h2>
-                <%= turbo_frame_tag "pending_requests" , loading: "lazy" , src: user_follows_requests_(@user)%>
+                <%= turbo_frame_tag "pending_requests" , loading: "lazy" , src: follow_requests_user(@user)%>
               </div>
             <% end %>
           </div>

@@ -8,6 +8,11 @@ class User < ApplicationRecord
   has_many :followers, through: :follower_follows, source: :follower
   has_many :followees, through: :followee_follows, source: :followee
 
+  has_many :sender_follow_requests, foreign_key: :sender_id, class_name: 'FollowRequest', dependent: :destroy
+  has_many :receiver_follow_requests, foreign_key: :receiver_id, class_name: 'FollowRequest', dependent: :destroy
+  has_many :sent_requests, through: :sender_follow_requests, source: :receiver
+  has_many :follow_requests, through: :receiver_follow_requests, source: :sender
+
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
 
@@ -15,23 +20,56 @@ class User < ApplicationRecord
     Post.where(user: followees).or(Post.where(user: self)).order(created_at: :desc)
   end
 
-  def likes?(likeable) # Determine if this user likes a post
-    Like.find_by(user: self, likeable:)
+  def likes?(likeable)
+    likes.exists?(likeable:)
   end
 
-  def following?(user) # Determine if this user follows another user
-    Follow.find_by(follower: self, followee: user)
+  def accept_follow(user)
+    request = receiver_follow_requests.find_by(sender: user)
+    return unless request
+
+    followees << user
+    request.destroy
   end
 
-  def following # Get all the users that this user follows including the ones that have not accepted the follow request
-    followees.order(name: :asc)
+  def reject_follow(user)
+    request = receiver_follow_requests.find_by(sender: user)
+    return unless request
+
+    request.destroy
   end
 
-  def accepted_follows # Get all the users that follow this user and have accepted the follow request
-    followers.where('follows.accepted = ?', true).order(name: :asc)
+  def send_follow(user)
+    return if self == user
+    return if followees.include?(user)
+
+    sender_follow_requests.create(receiver: user)
   end
 
-  def pending_follows # Get all the users that this user follows but have not accepted the follow request
-    followers.where('follows.accepted = ?', false).order(name: :asc)
+  def delete_follow(user)
+    follow = follower_follows.find_by(follower: user) || followee_follows.find_by(followee: user)
+    return unless follow
+
+    is_follower = follow.follower == user
+    follow.destroy
+    return 'follower' if is_follower
+
+    'followee'
+  end
+
+  def cancel_follow_request(user)
+    request = sender_follow_requests.find_by(receiver: user)
+    puts 'testtttttttt'
+    puts request.inspect
+    puts 'testtttttttt'
+    return unless request
+
+    request.destroy
+  end
+  def sent_request?(user)
+    sent_requests.include?(user)
+  end
+  def following?(user)
+    followees.include?(user)
   end
 end

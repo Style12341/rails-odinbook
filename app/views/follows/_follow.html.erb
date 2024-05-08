@@ -1,21 +1,27 @@
-<%# follow contains the user that corresponds to this follow  %>
-<div class="follow_container">
+<%# follow variable contains the user that could be a follower or a followee %>
+<div class="follow-container">
   <div class="follow">
-    <div class="follow_image">
-      <%# image_tag follow.image_url, alt: follow.name %>
+    <div class="follow-avatar">
+      <%# image_tag follow.avatar_url, alt: follow.username %>
     </div>
-    <div class="follow_name">
-      <%= follow.name %>
+    <div class="follow-username">
+      <%= link_to follow.name, user_path(follow),data: { turbo_frame: "_top" } %>
     </div>
-    <div class="follow_buttons">
-      <% if Follow.follow(current_user,follow).accepted %>
+    <div class="follow-actions">
+      <% if @user == current_user %>
         <% if current_user.following?(follow) %>
-          <%= button_to "Unfollow", follow_path(Follow.follow(current_user,follow)), method: :delete %>
+          <%= button_to (follower ? "Delete follow" : "Unfollow"), follow_path(follow), method: :delete, class: "btn btn-danger" %>
         <% else %>
-          <%= button_to "Follow", follows_path(follow), method: :post %>
+          <% if pending_request %>
+            <%= button_to "Cancel Request",
+                cancel_follow_request_user_path(follow),
+                method: :delete, class: "btn btn-primary" %>
+          <% else %>
+            <%= button_to "Request follow",
+                follow_requests_path(follow),
+                method: :post, class: "btn btn-primary" %>
+          <% end %>
         <% end %>
-      <% else %>
-        <%= button_to "Cancel Request", follow_path(Follow.follow(current_user,follow)), method: :delete %>
       <% end %>
     </div>
   </div>

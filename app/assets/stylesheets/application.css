@@ -276,3 +276,12 @@ span.comment {
 .hidden {
   display: none;
 }
+.follow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.follow-username a {
+  background-color: inherit;
+  color: white;
+}
