@@ -72,3 +72,11 @@ end
 gem 'devise', '~> 4.9'
 
 gem 'pagy', '~> 8.3'
+
+gem "pg_search", "~> 2.3"
+
+gem 'omniauth'
+
+gem 'omniauth-google-oauth2'
+
+gem "omniauth-rails_csrf_protection"

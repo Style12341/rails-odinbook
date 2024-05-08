@@ -1,8 +1,12 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include PgSearch::Model
+  pg_search_scope :search_by_name, against: :name, using: {
+    tsearch: { prefix: true }
+  }
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[google_oauth2]
   has_many :follower_follows, foreign_key: :followee_id, class_name: 'Follow', dependent: :destroy
   has_many :followee_follows, foreign_key: :follower_id, class_name: 'Follow', dependent: :destroy
   has_many :followers, through: :follower_follows, source: :follower
@@ -59,17 +63,24 @@ class User < ApplicationRecord
 
   def cancel_follow_request(user)
     request = sender_follow_requests.find_by(receiver: user)
-    puts 'testtttttttt'
-    puts request.inspect
-    puts 'testtttttttt'
     return unless request
 
     request.destroy
   end
+
   def sent_request?(user)
     sent_requests.include?(user)
   end
+
   def following?(user)
     followees.include?(user)
+  end
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name
+      user.avatar_url = auth.info.image
+    end
   end
 end

@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_07_221132) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_08_060516) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
@@ -53,6 +54,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_221132) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id", null: false
@@ -72,6 +82,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_221132) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "full_name"
+    t.string "uid"
+    t.string "avatar_url"
+    t.string "provider"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

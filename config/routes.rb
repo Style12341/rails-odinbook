@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  root 'pages#home'
   get 'pages/home'
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
   resources :users, only: %i[show edit update] do
     member do
       get 'follow_requests', to: 'follow_requests#follow_requests', as: 'follow_requests'
@@ -26,5 +31,5 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Defines the root path route ("/")
-  root 'pages#home'
+  
 end
