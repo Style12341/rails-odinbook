@@ -18,19 +18,27 @@ class FollowRequestsController < ApplicationController
 
   def accept
     @user = User.find(params[:id])
-    if current_user.accept_follow(@user)
-      redirect_to user_path(current_user)
-    else
-      redirect_to user_path(current_user), alert: 'Something went wrong'
+    respond_to do |format|
+      if current_user.accept_follow(@user)
+        format.html { redirect_to user_path(current_user) }
+        format.turbo_stream { render 'follow_requests/accept_button', locals: { sender: @user } }
+      else
+        format.html { redirect_to user_path(current_user), alert: 'Something went wrong' }
+        format.turbo_stream { render 'follow_requests/accept_button', locals: { sender: @user } }
+      end
     end
   end
 
   def destroy
     @user = User.find(params[:id])
-    if current_user.reject_follow(@user)
-      redirect_to user_path(current_user)
-    else
-      redirect_to user_path(current_user), alert: 'Something went wrong'
+    respond_to do |format|
+      if current_user.reject_follow(@user)
+        format.html { redirect_to user_path(current_user) }
+        format.turbo_stream { render 'follow_requests/accept_button', locals: { sender: @user } }
+      else
+        format.html { redirect_to user_path(current_user), alert: 'Something went wrong' }
+        format.turbo_stream { render 'follow_requests/accept_button', locals: { sender: @user } }
+      end
     end
   end
 

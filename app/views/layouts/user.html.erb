@@ -40,12 +40,11 @@
             <div class="right_card followers">
               <%= turbo_frame_tag "followers" , loading: "lazy" , src: followers_user_path(@user)%>
             </div>
-            <% if false %>
-              <div class="right_card pending_requests">
-                <h2>Pending Requests</h2>
-                <%= turbo_frame_tag "pending_requests" , loading: "lazy" , src: follow_requests_user(@user)%>
-              </div>
-            <% end %>
+            <div class="right_card follow-requests">
+              <% if current_user == @user %>
+                <%= turbo_frame_tag "follow-requests" , loading: "lazy" , src: follow_requests_user_path(@user)%>
+              <% end %>
+            </div>
           </div>
         </div>
         <footer>

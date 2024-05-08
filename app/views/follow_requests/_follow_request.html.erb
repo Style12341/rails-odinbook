@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "#{sender.id}_request" do%>
+  <div class="follow-container">
+    <div class="follow">
+      <div class="follow-avatar">
+        <%# image_tag follow.avatar_url, alt: follow.username %>
+      </div>
+      <div class="follow-username">
+        <%= link_to sender.name, user_path(sender),data: { turbo_frame: "_top" } %>
+      </div>
+      <div class="follow-actions">
+        <%= button_to "Accept", accept_follow_request_user_path(sender), method: :post, class: "btn btn-primary" %>
+        <%= button_to "Reject", follow_request_path(sender), method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+<% end %>
