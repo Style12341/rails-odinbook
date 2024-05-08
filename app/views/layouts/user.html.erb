@@ -32,12 +32,18 @@
         </nav>
         <div class="content">
           <div id="left-side-bar">
-            <div class="left_card">
-              <%#  turbo_frame_tag "user_info" , loading: "lazy" , src: user_info_user_path(@user)%>
+            <div class="left_card user-info">
+              <%= turbo_frame_tag "user_info" , loading: "lazy" do%>
+                <% if @user.avatar_url %>
+                  <%= image_tag @user.avatar_url %>
+                <% end %>
+                <h1><%= @user.name %></h1>
+                <p>Account created: <%= @user.created_at.strftime("%B %d, %Y") %></p>
+              <% end %>
             </div>
             <div class="left_card">
               <% if @user==current_user %>
-                <%=button_to "Edit Profile", edit_user_registration_path , method: :get %>
+                <%=button_to "Edit Profile", edit_user_registration_path , method: :get, class: "btn-primary" %>
               <% end %>
             </div>
           </div>

@@ -150,7 +150,6 @@ footer {
 }
 .main {
   display: grid;
-  align-content: center;
   justify-content: center;
 }
 .devise-new,
@@ -175,8 +174,8 @@ textarea {
   padding: 12px 20px;
   border-radius: 20px;
   width: 680px;
-  height: 400px;
-  resize: none;
+  height: 100px;
+  resize: vertical;
 }
 .post-content {
   background-color: #1e1e1e;
@@ -277,7 +276,8 @@ span.comment {
   display: none;
 }
 .follow {
-  display: flex;
+  display: grid;
+  grid-template-columns: min-content 2fr 3fr;
   align-items: center;
   gap: 20px;
 }
@@ -293,4 +293,45 @@ a.post-user {
   padding-left: 0;
   padding-top: 0px;
   font-size: 1.5rem;
+}
+#left-side-bar {
+  display: grid;
+  grid-template-rows: min-content;
+  justify-items: center;
+  gap: 30px;
+}
+.user-info {
+  justify-self: start;
+  padding: 20px;
+}
+.btn-primary {
+  background-color: #03dac6;
+  color: black;
+  font-weight: bold;
+  width: 100px;
+  height: 30px;
+  border: 0px;
+  border-radius: 10px;
+}
+.btn-danger{
+  background-color: #ff8f8f;
+  color: black;
+  font-weight: bold;
+  width: 100px;
+  height: 30px;
+  border: 0px;
+  border-radius: 10px;
+}
+.btn{
+  width:auto;
+  height: auto;
+  padding:5px;
+}
+.followees-container , .follows-container , .follow-requests {
+  display: grid;
+  gap: 10px;
+}
+.follow-actions{
+  display:flex;
+  gap:10px;
 }
