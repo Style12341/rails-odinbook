@@ -54,11 +54,7 @@ class User < ApplicationRecord
     follow = follower_follows.find_by(follower: user) || followee_follows.find_by(followee: user)
     return unless follow
 
-    is_follower = follow.follower == user
     follow.destroy
-    return 'follower' if is_follower
-
-    'followee'
   end
 
   def cancel_follow_request(user)
@@ -75,6 +71,7 @@ class User < ApplicationRecord
   def following?(user)
     followees.include?(user)
   end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

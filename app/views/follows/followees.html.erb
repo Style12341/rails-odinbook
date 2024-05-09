@@ -1,11 +1,9 @@
 <%= turbo_frame_tag "followees" do%>
   <div class="followees">
     <h2>Followees</h2>
-    <ul class="follows-container">
+    <ul class="follows-container" style="display:grid; gap:15px;">
       <% @followees.each do |followee| %>
-        <li class="follow-container">
           <%= render partial: "follow" ,locals:{follow: followee, follower: false , pending_request: false} %>
-        </li>
       <% end %>
     </ul>
   </div>

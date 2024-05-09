@@ -1,30 +1,38 @@
 <%# follow variable contains the user that could be a follower or a followee %>
-<div class="follow-container">
-  <div class="follow">
-    <div class="follow-avatar">
-      <%# image_tag follow.avatar_url, alt: follow.username %>
-    </div>
-    <div class="follow-username">
-      <%= link_to follow.name, user_path(follow),data: { turbo_frame: "_top" } %>
-    </div>
-    <div class="follow-actions">
-      <% if @user == current_user %>
-        <% if current_user.following?(follow) %>
-          <%= button_to (follower ? "Delete follow" : "Unfollow"), follow_path(follow), method: :delete, class: "btn btn-danger" %>
-        <% else %>
-          <turbo-frame id="<%= follow.id.to_s + "_request_button"%>">
-            <% if pending_request %>
-              <%= button_to "Cancel Request",
+<%= turbo_frame_tag (follower ? "#{follow.id}_follow_container" : "placeholder") do%>
+  <div class="follow-container" >
+    <div class="follow">
+      <div class="follow-avatar">
+        <%# image_tag follow.avatar_url, alt: follow.username %>
+      </div>
+      <div class="follow-username">
+        <%= link_to follow.name, user_path(follow),data: { turbo_frame: "_top" } %>
+      </div>
+      <div class="follow-actions">
+        <% if @user == current_user %>
+          <% if current_user.following?(follow) %>
+            <% if follower %>
+              <%= button_to "Delete follow", follow_path(follow, type: "Delete Follow"), method: :delete, class: "btn btn-danger" %>
+            <% else %>
+              <turbo-frame id="<%= follow.id.to_s + "_unfollow_button"%>">
+                <%= button_to "Unfollow", follow_path(follow, type: "Unfollow"), method: :delete, class: "btn btn-danger" %>
+              </turbo-frame>
+            <% end %>
+          <% else %>
+            <turbo-frame id="<%= follow.id.to_s + "_request_button"%>">
+              <% if pending_request %>
+                <%= button_to "Cancel Request",
                 cancel_follow_request_user_path(follow),
                 method: :delete, class: "btn btn-primary" %>
-            <% else %>
-              <%= button_to "Request follow",
+              <% else %>
+                <%= button_to "Request follow",
                 follow_requests_path(follow),
                 method: :post, class: "btn btn-primary" %>
-            <% end %>
-          </turbo-frame>
+              <% end %>
+            </turbo-frame>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

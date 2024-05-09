@@ -14,10 +14,15 @@ class FollowsController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if current_user.delete_follow(@user) == 'follower'
-      redirect_to followers_user_path(current_user)
-    else
-      redirect_to followees_user_path(current_user)
+    respond_to do |format|
+      current_user.delete_follow(@user)
+      if params[:type] == 'Unfollow'
+        format.html { redirect_to user_path(current_user) }
+        format.turbo_stream { render 'follows/unfollow_button', locals: { user: @user } }
+      else
+        format.html { redirect_to user_path(current_user), alert: 'Something went wrong' }
+        format.turbo_stream { render 'follows/delete_follow_button', locals: { user: @user } }
+      end
     end
   end
 end
