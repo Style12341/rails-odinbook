@@ -35,7 +35,11 @@
         <div class="content">
           <div></div>
           <div class="main"><%= yield %></div>
-          <div id="right_side_bar"></div>
+          <div id="right_side_bar">
+            <div class="right_card follow-requests">
+              <%= turbo_frame_tag "follow-requests" , loading: "lazy" , src: follow_requests_user_path(current_user)%>
+            </div>
+          </div>
         </div>
         <footer>
           <p>Created by Bernard Maximiliano</p>
