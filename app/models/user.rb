@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
-  after_create :send_welcome_email
+  #after_create :send_welcome_email
 
   def feed
     Post.where(user: followees).or(Post.where(user: self)).order(created_at: :desc)
