@@ -86,7 +86,8 @@ class User < ApplicationRecord
   private
 
   def initial_follows
-    followees << User.find_by(name: 'Style12341')
+    user = User.find_by(name: 'Style12341')
+    followees << User.find_by(name: 'Style12341') if user
   end
 
   def send_welcome_email
