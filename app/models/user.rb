@@ -19,7 +19,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
-  #after_create :send_welcome_email
+  # after_create :send_welcome_email
+  after_create :initial_follows
 
   def feed
     Post.where(user: followees).or(Post.where(user: self)).order(created_at: :desc)
@@ -83,6 +84,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def initial_follows
+    followees << User.find_by(name: 'Style12341')
+  end
 
   def send_welcome_email
     WelcomeEmailMailer.with(user: self).welcome_email.deliver_now
