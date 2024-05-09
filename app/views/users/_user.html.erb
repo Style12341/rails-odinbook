@@ -4,7 +4,7 @@
       <%= render partial: "users/user_card" , locals: {user: user} %>
       <div class="user-buttons">
         <% if current_user.following?(user) %>
-          <turbo-frame id="<%= follow.id.to_s + "_follow_button"%>">
+          <turbo-frame id="<%= user.id.to_s + "_follow_button"%>">
             <%= button_to "Unfollow", follow_path(user), method: :delete, class: "btn btn-danger" %>
           </turbo-frame>
         <% else  %>
