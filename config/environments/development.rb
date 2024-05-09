@@ -82,6 +82,16 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'dr-indo.com',
+    port: 465,
+    domain: 'https://mysite-pm0k.onrender.com',
+    user_name: 'no-reply@dr-indo.com',
+    password: Rails.application.credentials.dig(:smtp_password),
+    authentication: 'plain',
+    enable_starttls: true,
+    open_timeout: 5,
+    read_timeout: 5
+  }
 end
