@@ -1,13 +1,11 @@
 <%= turbo_frame_tag "follow-requests" do%>
   <div class="follow-requests">
     <h2>Follow requests:</h2>
-    <ul class="follow-requests">
+    <ul class="follow-requests" style="display:grid; gap:15px;">
       <% @follow_requests.each do |sender| %>
-        <li class="follow-container">
-          <%= turbo_frame_tag "#{sender.id}_request" do%>
-            <%= render partial: "follow_request" ,locals:{sender: sender} %>
-          <% end %>
-        </li>
+        <%= turbo_frame_tag "#{sender.id}_request" do%>
+          <%= render partial: "follow_request" ,locals:{sender: sender} %>
+        <% end %>
       <% end %>
     </ul>
   </div>
