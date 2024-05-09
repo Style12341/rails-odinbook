@@ -3,12 +3,10 @@ Minimal Facebook clone (mainly backend).
 Project Link:https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project
 Pending user search bar, emails in production.
 # Features
-- User authentication
-- Google OAuth2
-- User profiles with follows information
-- Infinite scrolling on home page
+- User authentication with optional Google Omniauth.
+- Infinite scrolling on posts feed.
 - Enable/Disable comments on posts
-- Load more comments when opened
-- Deleting posts and comments on home page
-- Dynamic comment and like numbers updating
+- Loading more comments it's optional and dynamic!
+- User profiles with follows information
+- Dynamic comment and like numbers updating with Stimulus
 - A horrible CSS Styling!
