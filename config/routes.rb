@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  resources :users, only: %i[show edit update] do
+  resources :users, only: %i[index show edit update] do
     member do
       get 'follow_requests', to: 'follow_requests#follow_requests', as: 'follow_requests'
       delete 'cancel_request', to: 'follow_requests#cancel', as: :cancel_follow_request

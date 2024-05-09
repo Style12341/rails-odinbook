@@ -10,9 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_08_060516) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_09_022443) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
@@ -84,8 +83,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_060516) do
     t.datetime "updated_at", null: false
     t.string "full_name"
     t.string "uid"
-    t.string "avatar_url"
+    t.string "avatar_url", default: "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
     t.string "provider"
+    t.integer "posts_count"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

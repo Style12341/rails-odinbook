@@ -18,7 +18,9 @@ end
   p = Post.all.sample
   p.comments.create(content: Faker::Lorem.paragraph, user: User.all.sample)
 end
-50.times do |n|
+10.times do |n|
+  Follow.create(follower: User.all.sample, followee: User.all.sample)
+end
+10.times do |_n|
   FollowRequest.create(sender: User.all.sample, receiver: User.all.sample)
-  Follow.create(follower: User.all.sample, followee: User.all.sample) if n % 2
 end

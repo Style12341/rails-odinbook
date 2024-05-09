@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "users-page-#{@pagy.page}" do%>
+  <div class="users">
+    <%= render @users %>
+    <%= render "users/next_page" , name: "users" %>
+  </div>
+<% end %>

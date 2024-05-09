@@ -313,7 +313,7 @@ a.post-user {
   border: 0px;
   border-radius: 10px;
 }
-.btn-danger{
+.btn-danger {
   background-color: #ff8f8f;
   color: black;
   font-weight: bold;
@@ -322,16 +322,45 @@ a.post-user {
   border: 0px;
   border-radius: 10px;
 }
-.btn{
-  width:auto;
+.btn {
+  width: auto;
   height: auto;
-  padding:5px;
+  padding: 5px;
 }
-.followees-container , .follows-container , .follow-requests {
+.followees-container,
+.follows-container,
+.follow-requests {
   display: grid;
   gap: 10px;
 }
-.follow-actions{
+.follow-actions {
+  display: flex;
+  gap: 10px;
+}
+.user-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap:15px;
+}
+a.user-name-link{
+  background-color: inherit;
+  color: white;
+}
+.users{
+  display: grid;
+  gap: 15px;
+}
+.user-data ul {
   display:flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.user-info-show{
+  background-color: #1e1e1e;
+  padding:15px;
+  border-radius: 20px;;
+  display: grid;
   gap:10px;
 }

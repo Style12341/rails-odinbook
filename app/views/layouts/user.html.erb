@@ -35,7 +35,7 @@
             <div class="left_card user-info">
               <%= turbo_frame_tag "user_info" , loading: "lazy" do%>
                 <% if @user.avatar_url %>
-                  <%= image_tag @user.avatar_url %>
+                  <%= image_tag @user.avatar_url , style: "width:96px;height:96px" %>
                 <% end %>
                 <h1><%= @user.name %></h1>
                 <p>Account created: <%= @user.created_at.strftime("%B %d, %Y") %></p>
