@@ -36,9 +36,11 @@
           <div></div>
           <div class="main"><%= yield %></div>
           <div id="right_side_bar">
-            <div class="right_card follow-requests">
-              <%= turbo_frame_tag "follow-requests" , loading: "lazy" , src: follow_requests_user_path(current_user)%>
-            </div>
+            <% if current_user %>
+              <div class="right_card follow-requests">
+                <%= turbo_frame_tag "follow-requests" , loading: "lazy" , src: follow_requests_user_path(current_user)%>
+              </div>
+            <% end %>
           </div>
         </div>
         <footer>
