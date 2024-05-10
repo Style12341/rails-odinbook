@@ -34,7 +34,7 @@ class User < ApplicationRecord
     request = receiver_follow_requests.find_by(sender: user)
     return unless request
 
-    followees << user
+    followers << user
     request.destroy
   end
 
