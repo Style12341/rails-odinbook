@@ -1,7 +1,5 @@
-<%= turbo_frame_tag "post_#{@post.id}_comments" do%>
-  <div class="comments-container">
-    <%= render @comments %>
-    <%= render 'comments/load_more' %>
-    <%= button_to "Close",root_path ,data: {action:"comment-handler#toggle comment-handler#hideCommentSection"}%>
-  </div>
+<%= turbo_frame_tag "post_#{@post.id}_comments" , class: "comments-container" do%>
+  <%= render @comments %>
+  <%= render 'comments/load_more' %>
+  <%= button_to "Close",root_path ,data: {action:"comment-handler#toggle comment-handler#hideCommentSection"}%>
 <% end %>

@@ -3,9 +3,7 @@
     <h2>Follow requests:</h2>
     <ul class="follow-requests" style="display:grid; gap:15px;">
       <% @follow_requests.each do |sender| %>
-        <%= turbo_frame_tag "#{sender.id}_request" do%>
-          <%= render partial: "follow_request" ,locals:{sender: sender} %>
-        <% end %>
+        <%= render partial: "follow_request" ,locals:{sender: sender} %>
       <% end %>
     </ul>
   </div>
